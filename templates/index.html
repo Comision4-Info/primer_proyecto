@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola soy el index</title>
-</head>
+{% block titulo %}
+<title>Index #dinamico</title>
+{% endblock %}
 
-<body>
-    <h1>Hola mundo! </h1>
-</body>
-
-</html>
+{% block contenido %}
+<p> Hola desde el index </p>
+{% if valor < 60 %}
+<p>El valor es: {{valor}}</p>
+{% else %}
+<p>El valor es menor a 60</p>
+{% endif %}
+{% endblock %}

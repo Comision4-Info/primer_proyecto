@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block titulo %} {% endblock %}
+</head>
+
+<body>
+    {% include 'navegacion.html' %}
+    <h1>Hola desde la base</h1>
+    {% block contenido %} {% endblock %}
+    <p>Hola nuevamente desde la base</p>
+</body>
+
+</html>

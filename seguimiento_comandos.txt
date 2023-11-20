@@ -1,0 +1,10 @@
+Dentro de la carpeta 'Proyecto' ejecutamos -> django-admin startproject <nombre_del_proyecto> # a_prueba
+Creamos en la carpeta a_prueba -> views.py -> funcion index(request)
+En la base/raiz del proyecto(Proyecto1) creamos una carpeta 'templates' #la raiz es la carpeta que contiene al manage.py
+Y dentro de esa carpeta crearemos un archivo llamado 'index.html' y le agregamos -> Hola desde el index!
+Para configurar la ubicacion de la carpeta templates -> settings.py -> TEMPLATES : "DIRS": [ BASE_DIR / "templates"]
+En el archivo urls.py -> importamos la view 'index' y luego en la seccion paths -> path("index/",index),
+Ejecutamos el comando: 'python manage.py migrate'
+Para ver cuales son los comandos que puedo utilizar con el manage.py ->'python manage.py help'
+Para correr el servidor ejecutamos -> 'python manage.py runserver'
+Y para ver el path que agregamos, a la direccion que nos brinda la cmd (127.0.0....etc), le agregamos el path que queremos visualizar #Ejemplo : 127.0.0.1:8000/contacto

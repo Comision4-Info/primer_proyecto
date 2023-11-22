@@ -8,3 +8,15 @@ Ejecutamos el comando: 'python manage.py migrate'
 Para ver cuales son los comandos que puedo utilizar con el manage.py ->'python manage.py help'
 Para correr el servidor ejecutamos -> 'python manage.py runserver'
 Y para ver el path que agregamos, a la direccion que nos brinda la cmd (127.0.0....etc), le agregamos el path que queremos visualizar #Ejemplo : 127.0.0.1:8000/contacto
+Creamos las carpetas: apps, static, media, utils
+En el archivo settings.py -> INSTALLED_APPS = [..., "apps.<nombre_de_la_app>"]
+Agregamos en settings -> AUTH_USER_MODEL = '<nombre de la app>.<nombre del modelo>'
+En el archivo models.py generamos la clase con los atributos para la base de datos
+En apps.py cambiamos el name= 'apps.<nombre_de_la_app>'
+En admin.py registramos la aplicacion para poder acceder a ella desde el panel de admin de django
+El la carpeta media dividimos tambien por carpetas, en este caso, creamos la carpeta usuarios
+En la app usuarios creamos en views.py la vista basada en clase para registrar usuarios
+En el archivo urls generales, agregamos las urls de la app usuarios
+Creamos el archivo urls.py en apps.usuarios
+Utilizamos la vista creada, para vincularla a un path(registrar/)
+En templates creamos una carpeta llamada usuarios que va a contener todos los html vinculados a los usuarios

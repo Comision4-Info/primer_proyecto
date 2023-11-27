@@ -4,11 +4,14 @@
 <title>Index #dinamico</title>
 {% endblock %}
 
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
 {% block contenido %}
 <p> Hola desde el index </p>
-{% if valor < 60 %}
-<p>El valor es: {{valor}}</p>
-{% else %}
-<p>El valor es menor a 60</p>
-{% endif %}
-{% endblock %}
+{% if valor < 60 %} <p>El valor es: {{valor}}</p>
+    {% else %}
+    <p>El valor es menor a 60</p>
+    {% endif %}
+    {% endblock %}

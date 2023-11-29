@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}
+<title>{{ disco.titulo }}</title>
+{% endblock %}
+
+{% block navegacion %}
+{% include 'navegacion.html' %}
+{% endblock %}
+
+{% block contenido %}
+{% if user.es_colaborador %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Administrar
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'apps.discos:modificar_disco' disco.pk %}">Modificar disco</a></li>
+        <li><a class="dropdown-item" href="{% url 'apps.discos:eliminar_disco' disco.pk %}">Eliminar disco</a></li>
+    </ul>
+</div>{% endif %}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-12 col-lg-6">
+            <div class="image-wrapper">
+                <img src="{{ disco.imagen.url }}" class="d-block w-100">
+                <p style='text-align: center;' class="mbr-timeline-date "><small
+                        class="text-body-secondary">{{disco.fecha_agregado}}</small></p>
+            </div>
+        </div>
+        <div class="col-12 col-lg">
+            <div class="text-wrapper">
+                <h2 class="mbr-section-title mbr-fonts-style mb-3 display-5"><strong>{{disco.titulo}}</strong>
+                </h2>
+                <h4 class="mbr-section-title mbr-fonts-style mb-3 "><i>{{disco.autor}}</i></h4>
+                <p class="mbr-text mbr-fonts-style display-7">{{disco.letra}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

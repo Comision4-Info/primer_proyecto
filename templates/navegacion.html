@@ -21,14 +21,13 @@
                         aria-expanded="false">
                         {{user.username}}
                     </a>
+                    {% if user.es_colaborador %}
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.discos:agregar_disco' %}">Agragar disco</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.discos:agregar_categoria' %}">Agregar
+                                categoria</a></li>
                     </ul>
+                    {% endif %}
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar sesión</a>
@@ -46,6 +45,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'apps.discos:listar_discos' %}">Discos</a>
                 </li>
 
             </ul>

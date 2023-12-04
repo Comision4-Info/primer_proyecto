@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block titulo %}
 <title>Discos</title>
 {% endblock %}
@@ -9,6 +10,18 @@
 {% endblock %}
 
 {% block contenido %}
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Discos
+    </a>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="{% url 'apps.discos:listar_discos' %}">Todos</a></li>
+        {% for i in categorias %}
+        <li><a class="dropdown-item" href="{% url 'apps.discos:listar_por_categoria' i.nombre %}">{{i.nombre}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</li>
 <section data-bs-version="5.1" class="timeline3 cid-tf4QbpyVP7" id="timeline3-o">
     {% if discos %}
     <div class="container-fluid" style="margin-top: 2%">
@@ -19,7 +32,6 @@
         </div>
         <div class="row" style="margin-bottom: 2%;">
             {% for p in discos %}
-
             <div class="col-md-4 mb-3">
                 <div class="card" style="text-align: center;">
                     <div class="card-img-top" style="display: block; width: 70%; margin: auto;">
@@ -43,8 +55,8 @@
                     </div>
                 </div>
             </div>
+            {% endfor %}{% endif %}
         </div>
     </div>
-    {% endfor %}{% endif %}
 </section>
 {% endblock %}

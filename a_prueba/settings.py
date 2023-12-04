@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     #Aplicaciones propias definidas
     "apps.usuarios",
     "apps.discos",
+    "apps.opiniones",
 ]
 #-----------------------------------------------------------------------------------------------------
 MIDDLEWARE = [

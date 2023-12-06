@@ -1,4 +1,5 @@
 from django.urls import path
+
 from .views import AgregarOpinion,ModificarOpinion,EliminarOpinion
 
 app_name = 'apps.opiniones'

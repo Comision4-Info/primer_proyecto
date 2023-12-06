@@ -21,16 +21,19 @@
                         aria-expanded="false">
                         {{user.username}}
                     </a>
-                    {% if user.es_colaborador %}
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'apps.discos:agregar_disco' %}">Agragar disco</a></li>
+                        <li><a class="dropdown-item"
+                                href="{% url 'apps.usuarios:actualizar_usuario' user.pk %}">Modificar perfil</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar sesión</a>
+                        </li>
+                        {% if user.es_colaborador %}
+                        <li><a class="dropdown-item" href="{% url 'apps.discos:agregar_disco' %}">Agregar disco</a></li>
                         <li><a class="dropdown-item" href="{% url 'apps.discos:agregar_categoria' %}">Agregar
                                 categoria</a></li>
+                        <li><a class="dropdown-item" href="{% url 'apps.usuarios:listar_usuarios' %}">Listar
+                                usuarios</a></li>
+                        {% endif %}
                     </ul>
-                    {% endif %}
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'apps.usuarios:cerrar_sesion' %}">Cerrar sesión</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
@@ -51,6 +54,12 @@
                 </li>
 
             </ul>
+            <form class="d-flex" role="search" method="get" action="{% url 'apps.discos:listar_discos' %}">
+                <input class="form-control me-2" type="search" placeholder="Buscar disco por titulo" aria-label="Search"
+                    name="buscador">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+
         </div>
     </div>
 </nav>

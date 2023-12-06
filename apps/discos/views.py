@@ -1,4 +1,5 @@
 from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -37,12 +38,21 @@ class ListarDiscos(ListView):
     model = Discos
     template_name = 'discos/listar_discos.html'
     context_object_name = 'discos'
+    paginate_by = 3
 
     def get_context_data(self) :
         context = super().get_context_data()
         categorias = Categoria.objects.all()
         context['categorias'] = categorias
         return context
+    
+    def get_queryset(self):
+        query = self.request.GET.get('buscador')
+        queryset = super().get_queryset()
+
+        if query:
+            queryset = queryset.filter(titulo__icontains = query)
+        return queryset.order_by('titulo')
 
 class EliminarDisco(DeleteView):
     model = Discos
@@ -88,3 +98,21 @@ def listar_por_categoria(request, categoria):
         'categorias' : categorias        
     }
     return render(request,template_name,contexto)
+
+# -----------Ejemplo de : Ordenar por  ----------------------
+
+def ordenar_por(request):
+    # Obtenemos el dato de 'orden' de la URL -> metodo GET ( para esto tiene que haber un elemento html que contenga el name = 'orden' y el valor(value=''))
+    orden = request.GET.get('orden', '')
+    #Validar lo que contiene Value
+    if orden == 'fecha':
+        discos = Discos.objects.order_by('fecha_agregado')
+    elif orden == 'titulo':
+        discos = Discos.objects.order_by('titulo')
+    else:
+        discos = Discos.objects.all()
+    template_name = 'discos/listar_discos.html'
+    contexto = {
+        'discos' : discos
+    }
+    return render(request, template_name, contexto)

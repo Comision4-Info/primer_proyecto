@@ -4,6 +4,8 @@ from apps.usuarios.models import Usuarios
 # Create your models here.
 class Categoria(models.Model):
     nombre = models.CharField(max_length=20, null=False, unique= True)
+    imagen = models.ImageField(null=True, upload_to='categorias', default='categorias/album_default.png')
+
 
     def __str__(self):
         return self.nombre

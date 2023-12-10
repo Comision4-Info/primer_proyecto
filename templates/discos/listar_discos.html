@@ -11,12 +11,6 @@
 
 {% block contenido %}
 
-<form class="d-flex" role="search" method="get" action="{% url 'apps.discos:listar_discos' %}">
-    <input class="form-control me-2" type="search" placeholder="Buscar disco por titulo" aria-label="Search"
-        name="buscador">
-    <button class="btn btn-outline-success" type="submit">Buscar</button>
-</form>
-
 <form method="GET" action="{% url 'apps.discos:ordenar_por' %}">
     <button class="btn btn-secondary" name="orden" type="submit" value="fecha" style="margin-top: 25px;">Ordenar por
         fecha</button>
@@ -32,7 +26,9 @@
     <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="{% url 'apps.discos:listar_discos' %}">Todos</a></li>
         {% for i in categorias %}
-        <li><a class="dropdown-item" href="{% url 'apps.discos:listar_por_categoria' i.nombre %}">{{i.nombre}}</a>
+        <li><a class="dropdown-item" href="{% url 'apps.discos:listar_por_categoria' i.nombre %}"><img
+                    src="{{i.imagen.url}}" alt="logo" class="rounded-circle flex-shrink-0"
+                    style="width: 40px;">{{i.nombre}}</a>
         </li>
         {% endfor %}
     </ul>

@@ -54,6 +54,18 @@ class ListarDiscos(ListView):
             queryset = queryset.filter(titulo__icontains = query)
         return queryset.order_by('titulo')
 
+class ListarAlbums(ListView):
+    model = Discos
+    template_name = 'discos/listar_albums.html'
+    context_object_name = 'discos'
+
+    def get_context_data(self) :
+        context = super().get_context_data()
+        categorias = Categoria.objects.all()
+        context['categorias'] = categorias
+        return context
+
+
 class EliminarDisco(DeleteView):
     model = Discos
     template_name = 'discos/confirma_eliminar.html'
@@ -111,8 +123,10 @@ def ordenar_por(request):
         discos = Discos.objects.order_by('titulo')
     else:
         discos = Discos.objects.all()
+    categorias = Categoria.objects.all()
     template_name = 'discos/listar_discos.html'
     contexto = {
-        'discos' : discos
+        'discos' : discos,
+        'categorias' : categorias,
     }
     return render(request, template_name, contexto)

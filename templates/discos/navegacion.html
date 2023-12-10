@@ -8,7 +8,7 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left: 25%;">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                 {% if user.is_authenticated %}
@@ -55,6 +55,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'apps.discos:listar_discos' %}">Discos</a>
                 </li>
+                <form method="GET" action="{% url 'apps.discos:ordenar_por' %}">
+                    <button class="btn btn-secondary" name="orden" type="submit" value="fecha">Ordenar por
+                        fecha</button>
+                    <button class="btn btn-secondary" name="orden" type="submit" value="titulo">Ordenar
+                        por
+                        título</button>
+                </form>
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="margin-top: 25px;">
+                    Álbum
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'apps.discos:listar_discos' %}">Todos</a></li>
+                    {% for i in categorias %}
+                    {% if i.imagen %}
+                    <li><a class="dropdown-item" href="{% url 'apps.discos:listar_por_categoria' i.nombre %}"><img
+                                src="{{ i.imagen.url }}" style="width: 15%; height: 15%;" alt="">{{i.nombre}}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
             </ul>
             <form class="d-flex" role="search" method="get" action="{% url 'apps.discos:listar_discos' %}">
                 <input class="form-control me-2" type="search" placeholder="Buscar disco por titulo" aria-label="Search"

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block titulo %}
-<title>Agregar categoria</title>
+<title>Agregar álbum</title>
 {% endblock %}
 
 {% block navegacion %}
@@ -9,14 +9,21 @@
 {% endblock %}
 
 {% block contenido %}
-
-<form method="post">
-    {% csrf_token %}
-
-    <h2>Agregar Categoria</h2>
-    <div>
-        {{ form.as_p }}
-        <input type="submit" value="Guardar">
-    </div>
-</form>
+<div class="main-container" style="text-align: center; margin-top: 12%;">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="overlay">
+            <div class="con">
+                <header class="head-form">
+                    <h2>Agregar álbum</h2>
+                    <p>Ingrese los datos y presione el botón de guardar</p>
+                </header>
+                <div>
+                    {{form.as_p}}
+                    <input type="submit" value="Guardar">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
 {% endblock %}
